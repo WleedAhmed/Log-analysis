@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 import psycopg2
 
@@ -9,10 +9,10 @@ c = conn.cursor()
 
 q1 = """
 select title, count(*) as views
-from articles join log 
+from articles join log
     on concat('/article/', articles.slug) = log.path
 where log.status like '%200%'
-group by log.path, articles.title 
+group by log.path, articles.title
 order by views desc limit 3;
 """
 
@@ -26,11 +26,11 @@ print("\n \n")
 
 q2 = """
 select authors.name, count(*) as views
-from articles join authors 
-    on articles.author = authors.id 
-    join log on concat('/article/', articles.slug) = log.path 
-where log.status = '200 OK' 
-group by authors.name 
+from articles join authors
+    on articles.author = authors.id
+    join log on concat('/article/', articles.slug) = log.path
+where log.status = '200 OK'
+group by authors.name
 order by views desc;
 """
 
@@ -46,11 +46,11 @@ select * from (
     select a.day,
     round(cast((100*b.views) as numeric) / cast(a.views as numeric), 1)
     as val from
-        (select date(time) as day, count(*) as views from log group by day) as a
-        join
-        (select date(time) as day, count(*) as views from log 
-        where status = '404 NOT FOUND' group by day) as b
-            on a.day = b.day) as errors 
+       (select date(time) as day, count(*) as views from log group by day) as a
+       join
+       (select date(time) as day, count(*) as views from log
+       where status = '404 NOT FOUND' group by day) as b
+            on a.day = b.day) as errors
 where val > 1;
 """
 
