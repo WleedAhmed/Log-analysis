@@ -5,7 +5,10 @@ _A project for Udacity Full Stack Nanodegree._
 I was asked to build an internal reporting tool that will use information from the database of a newspaper site to discover what kind of articles the site's readers like. 
 
 ## To Run the code:
-You will need **Python2**, **Vagrant** and **VirtualBox** installed on your computer. once you have them, you are ready for setup.
+You will need **Python**, **Vagrant** and **VirtualBox** installed on your computer. once you have them, you are ready for setup. 
+[Download Vagrant here](https://www.vagrantup.com/)
+[Download VirtualBox here](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
+
 
 ## Setup
 **1 - The VM:** 
